@@ -6,7 +6,8 @@ function renderizarGUI(){
 const divCalculadora= document.createElement("div")
 divCalculadora.setAttribute("id", "calculadora");
 divCalculadora.setAttribute("class", "text-center")
-divCalculadora.setAttribute("style", "width:50%; margin:0 auto;");
+divCalculadora.setAttribute("class", "form-control text-center");
+divCalculadora.setAttribute("style", "width:55%; margin:0 auto;");
 document.body.appendChild(divCalculadora);
 
 const divPantalla= document.createElement("div")
@@ -20,7 +21,7 @@ pantalla.setAttribute("type", "text");
 pantalla.setAttribute("value", "0");
 pantalla.setAttribute("disabled", "true");
 pantalla.setAttribute("class","from-control text-right");
-pantalla.setAttribute("style", "background-color", "grey");
+pantalla.setAttribute("style","width:90%; margin:0 auto;", "background-color", "grey" );
 divPantalla.appendChild(pantalla);
 
 const divBotones= document.createElement("div")
@@ -37,7 +38,7 @@ for( let i=0;i<botones.length;i++){
 
     let boton=document.createElement("button");
     boton.setAttribute("id","boton"+botones[i]);
-    boton.setAttribute("class", "btn btn-success col-3 border-white");
+    boton.setAttribute("class", "btn btn-danger col-3 border-white");
     boton.innerHTML=botones[i];
     
     boton.addEventListener("click", function(){
@@ -55,20 +56,24 @@ function procesarEvento(boton){
     if (miPantalla.value == "0"){
         miPantalla.value= "";
     }
+    
         if(boton.innerHTML != "="){
         miPantalla.value+=boton.innerHTML;
-    }
-    
+    }  
     else{
         try{
         let resultado=math.evaluate(miPantalla.value);
-        miPantalla.value= resultado;
+        miPantalla.value= resultado;            
+        }
         
-        }catch (error){
+        catch (error){
             alert("no sirve");
-        }  
+        }     
     }
-   
+
+    if (boton.innerHTML == "Delete"){
+        miPantalla.value = "0";
+    }
     
 }
 
